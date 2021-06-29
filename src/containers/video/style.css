@@ -1,0 +1,11 @@
+.video-box{
+    width: 24.5%;
+    height: 50%;
+    overflow: hidden;
+}
+.video-box>video{
+    max-width: 100%!important;
+    max-height: 100%!important;
+    object-fit: cover!important;
+    
+}
