@@ -78,7 +78,7 @@ socket.on("F-user-already-exist", ({error}) => {
         sessionStorage.setItem("username", username) 
         sessionStorage.setItem("video", userVideo.current);
         sessionStorage.setItem("audio",userAudio.current);
-        props.history.push(`/meet/${roomID}`)
+        props.history.push(`https://epic-bartik-613f83.netlify.app/meet/${roomID}`)
     }
     else {
        setError(error);
