@@ -458,7 +458,6 @@ const openChat = (e) => {
   null
 }
         <video ref={myVideoRef} 
-            muted 
             autoPlay
             playsInline></video>
 
