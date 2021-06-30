@@ -459,7 +459,8 @@ const openChat = (e) => {
 }
         <video ref={myVideoRef} 
             autoPlay
-            playsInline></video>
+            muted
+            playInline></video>
 
         </div>
   
