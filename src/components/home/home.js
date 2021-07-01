@@ -6,7 +6,7 @@ const Home = (props) => {
 const handleMeet = async() =>{
 
     try {
-        const {data} = await axios.get("https://teams-clone-backend.herokuapp.com/getRoomID")
+        const {data} = await axios.get("/getRoomID")
         props.history?.push(`/join/${data.roomID}`)
     }
     catch(error){
