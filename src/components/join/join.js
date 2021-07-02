@@ -171,7 +171,7 @@ const handleCancel = (e) =>{
         </div>
         {/* join , cancel buttons */}
         <div className="join-buttons-div">
-<CopyToClipboard text={`https://epic-bartik-613f83.netlify.app/join/${props.match.params.roomID}`}
+<CopyToClipboard text={`join/${props.match.params.roomID}`}
 onCopy={handleClick}>
 <Tooltip title="Copy meeting link to clipboard" arrow>
         <ShareIcon 
