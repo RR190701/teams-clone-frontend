@@ -66,6 +66,12 @@ const VideoChat = (props) => {
 
     // Set Back Button Event
     window.addEventListener('popstate', goToBack); 
+
+    //tab switch events
+  //   window.addEventListener('beforeunload', function (e) {
+  //     e.preventDefault();
+  //     e.returnValue = '';
+  // });
     
 
    // Connect Camera & Mic
@@ -544,6 +550,11 @@ const openChat = (e) => {
         screenTrackRef.current.onended();
       }
     };
+
+    //closing  chat
+    const closeChat = () =>{
+ setShowChat(false);
+    };
     
     //defining addClass
     let addClass ='';
@@ -655,6 +666,8 @@ const openChat = (e) => {
      <Chat
      showChat={showChat}
      roomID={roomID}
+    
+    closeChat={closeChat}
      ></Chat>
 
 <Snackbar

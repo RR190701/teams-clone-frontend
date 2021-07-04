@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Tooltip from '@material-ui/core/Tooltip';
 import PresentToAllIcon from '@material-ui/icons/PresentToAll';
+import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import "./style.css";
 //material UI styling 
 
@@ -125,8 +126,11 @@ handRaised+=1;
 </Tooltip>
 
 {/* shcreen share */}
-<Tooltip title="share screen">
-  <PresentToAllIcon className ={classes.topBarIcons} onClick={handleScreenSharing}/>
+<Tooltip title={screenShare?"You are sharing":"Share screen"}>
+  {screenShare?
+  <CancelPresentationIcon className ={classes.handRaised}></CancelPresentationIcon>:
+  <PresentToAllIcon className ={classes.topBarIcons} onClick={handleScreenSharing}/>}
+ 
 </Tooltip>
 
 
