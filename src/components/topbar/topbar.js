@@ -16,6 +16,10 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Tooltip from '@material-ui/core/Tooltip';
 import PresentToAllIcon from '@material-ui/icons/PresentToAll';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
+import InsertLinkIcon from '@material-ui/icons/InsertLink';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 import "./style.css";
 //material UI styling 
 
@@ -70,10 +74,25 @@ const TopBar = ({
     openChat,
     showChat,
     handleScreenSharing,
-    screenShare
+    screenShare,
+    roomID
 }) => {
 
     const classes = useStyles();
+    //snakbar methods
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+      setOpen(true);
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
+
    
 
 const getHandRaised = ()=> {
@@ -135,6 +154,13 @@ handRaised+=1;
 
 
       <Divider orientation="vertical" flexItem  />
+
+      {/*copy meeting link icon */}
+      <CopyToClipboard text={`http://localhost:3000/join/${roomID}`} onCopy={handleClick}>
+      <Tooltip title="click to copy meeting link">
+      <InsertLinkIcon className={classes.topBarIcons} />
+      </Tooltip>
+</CopyToClipboard>
       
       {/* chat icon */}
       <Tooltip title="Chat">
@@ -169,6 +195,24 @@ handRaised+=1;
        data-switch='celebrate'></InsertEmoticonIcon>
  </Tooltip>
 
+        {/* snackbar */}
+        <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message="Meeting link copied"
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
 
        
       </div>

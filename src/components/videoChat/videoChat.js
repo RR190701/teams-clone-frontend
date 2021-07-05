@@ -11,8 +11,10 @@ import Chat from './../Chat/chat';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Lottie from 'react-lottie';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import * as heart from './../../utils/heart-lottie.json'
 import * as celebrate from "./../../utils/claps.json";
+import Tooltip from '@material-ui/core/Tooltip';
 
 function SlideTransition(props) {
   return <Slide {...props} direction="up" />;
@@ -322,7 +324,8 @@ function createUserVideo(peer, index, arr) {
         {writeUserName(peer.username)}
         {writeUserNameOnVideo(peer.username)}
         {/* <FaIcon className='fas fa-expand' /> */}
-        <Video key={index} peer={peer} number={arr.length} />
+        <Video key={index} peer={peer} number={arr.length}
+        fullScreen ={fullScreen} />
       </div>
 
     );
@@ -407,14 +410,15 @@ function createUserVideo(peer, index, arr) {
 
       if (userVideoAudio[username].video) {
        
-        return (   
+        return (  
           <div class ="username-on-video">
           { userVideoAudio[username].handRaised?<PanToolIcon style={{color:"#FFCC00"}}></PanToolIcon>:null}
           <div>
             {username}
           </div>
           { userVideoAudio[username].audio?<MicIcon></MicIcon>:<MicOffIcon></MicOffIcon>}
-                </div>                
+                </div>   
+             
       );
       }
     }
@@ -555,6 +559,24 @@ const openChat = (e) => {
     const closeChat = () =>{
  setShowChat(false);
     };
+
+    //full screen
+    const fullScreen = (e) => {
+      const elem = e.target;
+  
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        /* Firefox */
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) {
+        /* Chrome, Safari & Opera */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        /* IE/Edge */
+        elem.msRequestFullscreen();
+      }
+    };
     
     //defining addClass
     let addClass ='';
@@ -599,6 +621,7 @@ const openChat = (e) => {
     showChat={showChat}
     screenShare={screenShare}
     handleScreenSharing={handleScreenSharing}
+    roomID={roomID}
     ></TopBar>
     {/* video container */}
       <div className={`video-container ${showChat?"showChat":"hideChat"}`}>
@@ -647,10 +670,13 @@ const openChat = (e) => {
 </div>
 { userVideoAudio["localUser"].audio?<MicIcon></MicIcon>:<MicOffIcon></MicOffIcon>}
       </div>
+
   ):
   null
 }
-        <video ref={myVideoRef} 
+        <video 
+        ref={myVideoRef} 
+        onClick={fullScreen}
             autoPlay
             muted
             playInline></video>
