@@ -49,7 +49,7 @@ export default function Chat({showChat,
   roomID,
 closeChat}) {
   const classes = useStyles();
-  const currentUser = sessionStorage.getItem('username');
+  const currentUser = localStorage.getItem('username');
   const [msg, setMsg] = useState([]);
   const [message, setMessage] = useState("")
   const [state, setState] = useState(false);
