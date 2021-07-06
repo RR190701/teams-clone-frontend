@@ -22,7 +22,7 @@ function SlideTransition(props) {
 
 const VideoChat = (props) => {
  
-    const currentUser = sessionStorage.getItem('username');
+    const currentUser = localStorage.getItem('username');
     const roomID = props.match.params.roomID;
     //list of peers connected through same room
     const [peers, setPeers] = useState([]);
